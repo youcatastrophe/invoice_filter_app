@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_184054) do
+ActiveRecord::Schema.define(version: 2020_02_13_193644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "address_1"
+    t.string "address_2"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "contact_id", null: false
+    t.boolean "primary", default: false, null: false
+    t.index ["contact_id"], name: "index_addresses_on_contact_id"
+  end
 
   create_table "announcements", force: :cascade do |t|
     t.datetime "published_at"
@@ -22,6 +35,28 @@ ActiveRecord::Schema.define(version: 2020_02_12_184054) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "carriers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "prefix"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "middle_name"
+    t.date "birthday"
+    t.string "mobile_phone"
+    t.string "email"
+    t.string "home_phone"
+    t.string "work_phone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -35,6 +70,9 @@ ActiveRecord::Schema.define(version: 2020_02_12_184054) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+# Could not dump table "invoices" because of following StandardError
+#   Unknown type 'invoice_status' for column 'status'
+
   create_table "notifications", force: :cascade do |t|
     t.bigint "recipient_id"
     t.bigint "actor_id"
@@ -42,6 +80,13 @@ ActiveRecord::Schema.define(version: 2020_02_12_184054) do
     t.string "action"
     t.bigint "notifiable_id"
     t.string "notifiable_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "payment_types", force: :cascade do |t|
+    t.string "name"
+    t.string "tag"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -76,5 +121,12 @@ ActiveRecord::Schema.define(version: 2020_02_12_184054) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "addresses", "contacts"
+  add_foreign_key "contacts", "users"
+  add_foreign_key "invoices", "addresses", column: "billing_address_id"
+  add_foreign_key "invoices", "addresses", column: "shipping_address_id"
+  add_foreign_key "invoices", "carriers"
+  add_foreign_key "invoices", "contacts"
+  add_foreign_key "invoices", "payment_types"
   add_foreign_key "services", "users"
 end

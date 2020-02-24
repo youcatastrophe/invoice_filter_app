@@ -1,0 +1,23 @@
+%h1 Listing payment_types
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Tag
+      %th
+      %th
+      %th
+
+  %tbody
+    - @payment_types.each do |payment_type|
+      %tr
+        %td= payment_type.name
+        %td= payment_type.tag
+        %td= link_to 'Show', payment_type
+        %td= link_to 'Edit', edit_payment_type_path(payment_type)
+        %td= link_to 'Destroy', payment_type, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Payment type', new_payment_type_path

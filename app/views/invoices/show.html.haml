@@ -1,0 +1,42 @@
+%p#notice= notice
+
+%p
+  %b Contact:
+  = @invoice.contact
+%p
+  %b Order date:
+  = @invoice.order_date
+%p
+  %b Shipment date:
+  = @invoice.shipment_date
+%p
+  %b Shipping address:
+  = @invoice.shipping_address_id
+%p
+  %b Billing address:
+  = @invoice.billing_address_id
+%p
+  %b Payment type:
+  = @invoice.payment_type
+%p
+  %b Carrier:
+  = @invoice.carrier
+%p
+  %b Total:
+  = @invoice.total
+%p
+  %b Tax:
+  = @invoice.tax
+%p
+  %b Shipping handling:
+  = @invoice.shipping_handling
+%p
+  %b Subtotal:
+  = @invoice.subtotal
+%p
+  %b Invoice number:
+  = @invoice.invoice_number
+
+= link_to 'Edit', edit_invoice_path(@invoice)
+\|
+= link_to 'Back', invoices_path

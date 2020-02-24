@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @carrier.name
+
+= link_to 'Edit', edit_carrier_path(@carrier)
+\|
+= link_to 'Back', carriers_path

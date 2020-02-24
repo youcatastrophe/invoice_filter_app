@@ -7,4 +7,5 @@ class User < ApplicationRecord
 
   has_many :notifications, foreign_key: :recipient_id
   has_many :services
+  has_many :contacts, inverse_of: :user, dependent: :restrict_with_error
 end

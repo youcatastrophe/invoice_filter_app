@@ -1,0 +1,29 @@
+.page-header
+  = link_to contacts_path, class: 'btn btn-default' do
+    All Contacts
+  = link_to edit_contact_path(@contact), class: 'btn btn-primary' do
+    Edit
+  %h1 Show contact
+%dl.dl-horizontal
+  %dt User:
+  %dd= @contact.user
+  %dt Prefix:
+  %dd= @contact.prefix
+  %dt First name:
+  %dd= @contact.first_name
+  %dt Last name:
+  %dd= @contact.last_name
+  %dt Middle name:
+  %dd= @contact.middle_name
+  %dt Birthday:
+  %dd= @contact.birthday
+  %dt Mobile phone:
+  %dd= @contact.mobile_phone
+  %dt Email:
+  %dd= @contact.email
+  %dt Home phone:
+  %dd= @contact.home_phone
+  %dt Work phone:
+  %dd= @contact.work_phone
+  %dt Address:
+  %dd= @contact.address

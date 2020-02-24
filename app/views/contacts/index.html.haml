@@ -1,0 +1,37 @@
+.row
+  .col-sm-6
+    %h1 Contacts
+  .col-sm-6.text-right
+    = link_to new_contact_path, class: 'btn btn-primary' do
+      Add New Contact
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th User
+        %th Prefix
+        %th First name
+        %th Last name
+        %th Middle name
+        %th Birthday
+        %th Mobile phone
+        %th Email
+        %th Home phone
+        %th Work phone
+        %th Address
+        %th
+    %tbody
+      - @contacts.each do |contact|
+        = content_tag :tr, id: dom_id(contact), class: dom_class(contact) do
+          %td= contact.user
+          %td= contact.prefix
+          %td= contact.first_name
+          %td= contact.last_name
+          %td= contact.middle_name
+          %td= contact.birthday
+          %td= contact.mobile_phone
+          %td= contact.email
+          %td= contact.home_phone
+          %td= contact.work_phone
+          %td= contact.address
+          %td= link_to 'Show', contact

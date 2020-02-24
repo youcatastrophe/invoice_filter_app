@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  contact: one
+  order_date: 2020-02-13 11:56:57
+  shipment_date: 2020-02-13 11:56:57
+  shipping_address_id: 
+  billing_address_id: 
+  payment_type: one
+  carrier: one
+  total: 9.99
+  tax: 9.99
+  shipping_handling: 9.99
+  subtotal: 9.99
+  invoice_number: 
+
+two:
+  contact: two
+  order_date: 2020-02-13 11:56:57
+  shipment_date: 2020-02-13 11:56:57
+  shipping_address_id: 
+  billing_address_id: 
+  payment_type: two
+  carrier: two
+  total: 9.99
+  tax: 9.99
+  shipping_handling: 9.99
+  subtotal: 9.99
+  invoice_number: 

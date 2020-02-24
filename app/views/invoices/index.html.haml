@@ -1,0 +1,43 @@
+%h1 Listing invoices
+
+%table
+  %thead
+    %tr
+      %th Contact
+      %th Order date
+      %th Shipment date
+      %th Shipping address
+      %th Billing address
+      %th Payment type
+      %th Carrier
+      %th Total
+      %th Tax
+      %th Shipping handling
+      %th Subtotal
+      %th Invoice number
+      %th
+      %th
+      %th
+
+  %tbody
+    - @invoices.each do |invoice|
+      %tr
+        %td= invoice.contact
+        %td= invoice.order_date
+        %td= invoice.shipment_date
+        %td= invoice.shipping_address_id
+        %td= invoice.billing_address_id
+        %td= invoice.payment_type
+        %td= invoice.carrier
+        %td= invoice.total
+        %td= invoice.tax
+        %td= invoice.shipping_handling
+        %td= invoice.subtotal
+        %td= invoice.invoice_number
+        %td= link_to 'Show', invoice
+        %td= link_to 'Edit', edit_invoice_path(invoice)
+        %td= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Invoice', new_invoice_path

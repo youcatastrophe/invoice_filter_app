@@ -1,6 +1,11 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :invoices
+  resources :carriers
+  resources :payment_types
+  resources :contacts
+  resources :addresses
   namespace :admin do
     resources :users
     resources :announcements

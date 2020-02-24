@@ -1,0 +1,51 @@
+= form_with(model: contact, local: true) do |form|
+  - if contact.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(contact.errors.count, "error")
+        prohibited this contact from being saved:
+      %ul
+        - contact.errors.full_messages.each do |message|
+          %li= message
+  .form-group
+    = form.label :user_id
+    = form.text_field :user_id, class: 'form-control'
+  .form-group
+    = form.label :prefix
+    = form.text_field :prefix, class: 'form-control'
+  .form-group
+    = form.label :first_name
+    = form.text_field :first_name, class: 'form-control'
+  .form-group
+    = form.label :last_name
+    = form.text_field :last_name, class: 'form-control'
+  .form-group
+    = form.label :middle_name
+    = form.text_field :middle_name, class: 'form-control'
+  .form-group
+    = form.label :birthday
+    = form.date_select :birthday, class: 'form-control'
+  .form-group
+    = form.label :mobile_phone
+    = form.text_field :mobile_phone, class: 'form-control'
+  .form-group
+    = form.label :email
+    = form.text_field :email, class: 'form-control'
+  .form-group
+    = form.label :home_phone
+    = form.text_field :home_phone, class: 'form-control'
+  .form-group
+    = form.label :work_phone
+    = form.text_field :work_phone, class: 'form-control'
+  .form-group
+    = form.label :address_id
+    = form.text_field :address_id, class: 'form-control'
+  .form-group
+    - if contact.persisted?
+      .float-right
+        = link_to 'Destroy', contact, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' }
+    = form.submit class: 'btn btn-primary'
+    - if contact.persisted?
+      = link_to "Cancel", contact, class: "btn btn-link"
+    - else
+      = link_to "Cancel", contacts_path, class: "btn btn-link"

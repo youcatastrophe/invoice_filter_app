@@ -1,0 +1,33 @@
+= form_with(model: address, local: true) do |form|
+  - if address.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(address.errors.count, "error")
+        prohibited this address from being saved:
+      %ul
+        - address.errors.full_messages.each do |message|
+          %li= message
+  .form-group
+    = form.label :address_1
+    = form.text_field :address_1, class: 'form-control'
+  .form-group
+    = form.label :address_2
+    = form.text_field :address_2, class: 'form-control'
+  .form-group
+    = form.label :city
+    = form.text_field :city, class: 'form-control'
+  .form-group
+    = form.label :state
+    = form.text_field :state, class: 'form-control'
+  .form-group
+    = form.label :zip
+    = form.text_field :zip, class: 'form-control'
+  .form-group
+    - if address.persisted?
+      .float-right
+        = link_to 'Destroy', address, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' }
+    = form.submit class: 'btn btn-primary'
+    - if address.persisted?
+      = link_to "Cancel", address, class: "btn btn-link"
+    - else
+      = link_to "Cancel", addresses_path, class: "btn btn-link"

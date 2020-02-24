@@ -1,0 +1,25 @@
+.row
+  .col-sm-6
+    %h1 Addresses
+  .col-sm-6.text-right
+    = link_to new_address_path, class: 'btn btn-primary' do
+      Add New Address
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Address 1
+        %th Address 2
+        %th City
+        %th State
+        %th Zip
+        %th
+    %tbody
+      - @addresses.each do |address|
+        = content_tag :tr, id: dom_id(address), class: dom_class(address) do
+          %td= address.address_1
+          %td= address.address_2
+          %td= address.city
+          %td= address.state
+          %td= address.zip
+          %td= link_to 'Show', address
